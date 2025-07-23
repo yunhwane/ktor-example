@@ -13,6 +13,14 @@ repositories {
 
 dependencies {
 
+    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
+
+    implementation("io.ktor:ktor-server-config-yaml-jvm:$ktorVersion")
+
+    implementation("org.slf4j:slf4j-api:2.0.7")
+    implementation("ch.qos.logback:logback-classic:1.4.11")
+
     implementation("io.ktor:ktor-server-content-negotiation:${ktorVersion}")
     implementation("io.ktor:ktor-serialization-jackson:${ktorVersion}")
 
