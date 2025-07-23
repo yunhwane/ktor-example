@@ -2,6 +2,7 @@ package com.example
 
 import com.example.plugins.callLogging
 import com.example.plugins.contentNegotiation
+import com.example.plugins.registerRouting
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -27,19 +28,5 @@ data class Sample(
 fun Application.module() {
     contentNegotiation()
     callLogging()
-
-    routing {
-        get("/") {
-            call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
-        }
-
-        get("/sample") {
-            call.respond(Sample("naver.com", LocalDateTime.now()))
-        }
-
-        post("/sample") {
-            val sample = call.receive<Sample>()
-            call.respond(Sample(sample.email, LocalDateTime.now()))
-        }
-    }
+    registerRouting()
 }
