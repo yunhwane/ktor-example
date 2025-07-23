@@ -18,6 +18,8 @@ dependencies {
 
     implementation("io.ktor:ktor-server-config-yaml-jvm:$ktorVersion")
 
+    implementation("io.ktor:ktor-server-call-logging:${ktorVersion}")
+
     implementation("org.slf4j:slf4j-api:2.0.7")
     implementation("ch.qos.logback:logback-classic:1.4.11")
 
