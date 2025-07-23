@@ -1,4 +1,6 @@
 val ktorVersion = "2.3.7"
+val mysqlVersion = "8.0.33"
+val exposedVersion = "0.45.0"
 
 plugins {
     kotlin("jvm") version "2.1.21"
@@ -19,6 +21,13 @@ dependencies {
     implementation("io.ktor:ktor-server-config-yaml-jvm:$ktorVersion")
 
     implementation("io.ktor:ktor-server-call-logging:${ktorVersion}")
+
+
+    implementation("org.jetbrains.exposed:exposed-core:${exposedVersion}")
+    implementation("org.jetbrains.exposed:exposed-dao:${exposedVersion}")
+    implementation("org.jetbrains.exposed:exposed-jdbc:${exposedVersion}")
+    implementation("org.jetbrains.exposed:exposed-java-time:${exposedVersion}")
+    implementation("mysql:mysql-connector-java:${mysqlVersion}")
 
     implementation("org.slf4j:slf4j-api:2.0.7")
     implementation("ch.qos.logback:logback-classic:1.4.11")
