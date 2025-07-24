@@ -5,16 +5,19 @@ import com.example.common.exception.CustomException
 import com.example.common.exception.ErrorCode
 import com.example.security.PBFDK2Provider
 import com.example.security.PasetoProvider
+import com.example.security.TimeBaseEncryptionProvider
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.server.application.install
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
+import java.util.Base64
 
 
 fun Application.initialize() {
     pasetoInitialize(environment)
     pbfdk2Initialize(environment)
+    timebaseInitialize(environment)
     install(Koin) {
         modules(
             module { single {environment} },
@@ -23,6 +26,29 @@ fun Application.initialize() {
     }
 }
 
+fun timebaseInitialize(environment: ApplicationEnvironment) {
+    try {
+        val securityConfig = environment.config.config("security")
+        val config = securityConfig.config("timebase")
+
+        val masetKeyBase64 = config.property("masterKey").getString()
+
+        if (masetKeyBase64.isBlank()) {
+            throw IllegalArgumentException("Master key is required")
+        }
+
+        val masterKey = Base64.getDecoder().decode(masetKeyBase64)
+
+        if (masterKey.size != 32) {
+            throw IllegalArgumentException("Master key length is not 32 bytes")
+        }
+
+        TimeBaseEncryptionProvider.initialize(masterKey)
+        environment.log.info("TimeBase initialization started")
+    } catch (e: Exception) {
+        throw CustomException(ErrorCode.FAILED_TO_ENV, e.message)
+    }
+}
 
 fun pbfdk2Initialize(environment: ApplicationEnvironment) {
     try {
