@@ -3,6 +3,7 @@ package com.example.plugins
 import com.example.common.di.appModule
 import com.example.common.exception.CustomException
 import com.example.common.exception.ErrorCode
+import com.example.common.file.FileStorage
 import com.example.security.PBFDK2Provider
 import com.example.security.PasetoProvider
 import com.example.security.TimeBaseEncryptionProvider
@@ -18,11 +19,29 @@ fun Application.initialize() {
     pasetoInitialize(environment)
     pbfdk2Initialize(environment)
     timebaseInitialize(environment)
+    minIoInitialize(environment)
+
     install(Koin) {
         modules(
             module { single {environment} },
             appModule
         )
+    }
+}
+fun minIoInitialize(environment: ApplicationEnvironment) {
+    try {
+        val baseConfig = environment.config.config("storage")
+        val bucket = baseConfig.property("bucket").getString()
+
+        val config = baseConfig.config("minio")
+        val endpoint = config.property("endpoint").getString()
+        val accessKey = config.property("accessKey").getString()
+        val secretKey = config.property("secretKey").getString()
+
+        FileStorage.initialize(bucket, endpoint, accessKey, secretKey)
+        environment.log.info("FileStorage initialized")
+    } catch (e: Exception) {
+        throw CustomException(ErrorCode.FAILED_TO_ENV, e.message)
     }
 }
 

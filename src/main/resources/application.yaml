@@ -23,3 +23,22 @@ security:
     iterations: "120000"
     keyLength: "256"
     saltLength: "16"
+  timebase:
+    masterKey: cTjzOEZNpXees+RZMGzvDQmnIPlURWEn+brd9yi0Qro=
+
+storage:
+  bucket: "demo-bucket"
+  minio:
+    endpoint: "http://localhost:9000"
+    accessKey: "minio_user"
+    secretKey: "minio_password"
+
+email:
+  provider: "jakata"
+  fromEmail: "TODO"
+  fromName: "noreply"
+  jakata:
+    host: "smtp.gmail.com"
+    port: "587"
+    username : "TODO"
+    password: "TODO"

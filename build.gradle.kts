@@ -51,6 +51,12 @@ dependencies {
     // ulid
     implementation("com.github.f4b6a3:ulid-creator:5.2.0")
 
+    // minIO
+    implementation("io.minio:minio:8.5.5")
+
+    // Jakarta Mail
+    implementation("com.sun.mail:jakarta.mail:2.0.1")
+    
     testImplementation(kotlin("test"))
 }
 

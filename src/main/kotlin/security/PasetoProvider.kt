@@ -56,4 +56,8 @@ object PasetoProvider {
 
         return parser.parse(processedToken)
     }
+
+    fun getUserId(token : String) : String {
+        return this.verifyToken(token).claims["sub"].toString()
+    }
 }
