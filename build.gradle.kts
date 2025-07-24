@@ -43,6 +43,14 @@ dependencies {
     implementation("io.insert-koin:koin-ktor:3.5.0")
     implementation("io.insert-koin:koin-logger-slf4j:3.5.0")
 
+
+    implementation("dev.paseto:jpaseto-api:0.7.0")
+    implementation("dev.paseto:jpaseto-impl:0.7.0")
+    implementation("dev.paseto:jpaseto-jackson:0.7.0")
+
+    // ulid
+    implementation("com.github.f4b6a3:ulid-creator:5.2.0")
+
     testImplementation(kotlin("test"))
 }
 
