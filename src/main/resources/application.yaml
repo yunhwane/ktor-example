@@ -6,3 +6,9 @@ ktor:
     port: 8080
 
 
+database:
+  driverClassName : "com.mysql.cj.jdbc.Driver"
+  url : "jdbc:mysql://localhost:3306/app?useUnicode=true&characterEncoding=utf8&useSSL=false"
+  password : ""
+  username: "root"
+  poolSize : 10

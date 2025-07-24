@@ -1,6 +1,7 @@
 package com.example
 
 import com.example.plugins.callLogging
+import com.example.plugins.configureDatabase
 import com.example.plugins.contentNegotiation
 import com.example.plugins.registerRouting
 import io.ktor.server.application.Application
@@ -14,4 +15,5 @@ fun Application.module() {
     contentNegotiation()
     callLogging()
     registerRouting()
+    configureDatabase()
 }
