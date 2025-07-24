@@ -18,3 +18,8 @@ security:
     issuer: "time-capsule-alpha"
     privateKey: "MC4CAQAwBQYDK2VwBCIEIBJbj0ZFnNxYANH/fpzO5+LQGE2Djiv3wysZM93OWPNq"
     publicKey: "MCowBQYDK2VwAyEAlZyrtYwZn00A91LbCzjX4YN56AvAqa7AuETEfNPhlDY="
+  pbfdk2:
+    algorithm: "PBKDF2WithHmacSHA256"
+    iterations: "120000"
+    keyLength: "256"
+    saltLength: "16"
